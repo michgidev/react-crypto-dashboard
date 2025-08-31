@@ -46,7 +46,7 @@ const OverviewCard = ({ currentCrypto }) => {
       </div>
 
       {/* Price variations section */}
-      <div className="flex items-center justify-evenly flex-2 gap-4">
+      <div className="flex items-center justify-evenly flex-2">
 
         {/* Last 24 h */}
         <div className="p-1 lg:p-2 flex-1 flex-col items-center justify-center gap-2 border-e border-gray-300">

@@ -33,6 +33,7 @@ function App() {
     <Layout>
       <div className="lg:p-4">
 
+        {/* Overview and select */}
         <div className="flex flex-col justify-between gap-4 lg:flex-row">
           <div className="order-2 lg:flex-2 lg:order-1">
             <OverviewCard currentCrypto={currentCrypto}/>

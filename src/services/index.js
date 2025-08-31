@@ -24,11 +24,11 @@ const getTopCryptos = async () => {
   }
 };
 
-// Fetch crypto data by id(param)
+// Fetch crypto data by id
 const getCryptoDataByID = async (id) => {
   try {
     const response = await fetch(
-      `${COINGECKO_URL}coins/${id}`,
+      `${COINGECKO_URL}coins/${id}?localization=false&tickers=false&community_data=false&developer_data=false&sparkline=false`,
       options
     );
 
@@ -41,4 +41,21 @@ const getCryptoDataByID = async (id) => {
   }
 }
 
-export { getTopCryptos, getCryptoDataByID }
+// Fetch 7 days market chart data by id
+const getCryptoHistoricalChartData = async (id) => {
+  try {
+    const response = await fetch(
+      `${COINGECKO_URL}coins/${id}/market_chart?vs_currency=usd&days=7`,
+      options
+    );
+
+    if (!response.ok) throw new Error(response.status);
+
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    return err;
+  }
+}
+
+export { getTopCryptos, getCryptoDataByID, getCryptoHistoricalChartData }
