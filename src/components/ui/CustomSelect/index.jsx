@@ -1,6 +1,6 @@
 import Select from "react-select";
 
-const CustomSelect = ({ optionsList, onChange, value }) => {
+const CustomSelect = ({ optionsList, onChange, value, ...props }) => {
 
   // Formats options for use with react-select
   const formattedOptions = optionsList.map((option) => ({
@@ -43,13 +43,14 @@ const CustomSelect = ({ optionsList, onChange, value }) => {
       placeholder="Elige una crypto"
       onChange={(selected) => onChange({ target: { value: selected.value } })} // emula evento
       components={{ SingleValue: customSelectedValue, Option: customOption }}
-      className="min-w-48"
+      {...props}
       styles={{
         control: (base) => ({
           ...base,
           borderRadius: '0.5rem',
           border: 'none',
           boxShadow: '0 4px 6px -1px var(--color-indigo-100), 0 2px 4px -2px var(--color-indigo-100)',
+          cursor: 'pointer'
           
         }),
       }}

@@ -12,8 +12,8 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       {/* Aside */}
       <aside
         className={
-          `fixed top-0 left-0 h-full pt-[72px] w-64 bg-white shadow-lg z-20 transform transition-transform duration-300 ease-in-out 
-          ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:pt-[62px] lg:translate-x-0 lg:static lg:shadow-none`
+          `fixed top-0 left-0 h-full pt-[72px] w-64 bg-white shadow-lg shadow-indigo-100 z-20 transform transition-transform duration-300 ease-in-out 
+          ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:pt-[62px] lg:translate-x-0 lg:static lg:shadow-md `
         }
       >
 
