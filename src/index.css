@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+:root {
+  --main-background: #F4F7FF;
+}
+
+body {
+  min-height: 100dvh;
+  background-color: var(--main-background);
+}
+
+.css-hlgwow {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+}
