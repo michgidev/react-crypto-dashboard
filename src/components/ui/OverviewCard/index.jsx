@@ -1,6 +1,6 @@
 import { ArrowDownLeft, ArrowUpRight } from "lucide-react";
-import { useCurrency } from "../../../hooks/useCurrency";
 import { formatPercentage } from "../../../utils/formatPercentage";
+import { formatCurrency } from "../../../utils/formatCurrency";
 
 const OverviewCard = ({ currentCrypto }) => {
 
@@ -8,13 +8,11 @@ const OverviewCard = ({ currentCrypto }) => {
     (value > 0)  ? <ArrowUpRight color="#1DD6B4" /> : <ArrowDownLeft color="#F46D22"/>
   );
 
-  console.log(currentCrypto);
-
   // Formats value to currency
-  const currentPrice = useCurrency(currentCrypto.market_data?.current_price?.usd);
+  const currentPrice = formatCurrency(currentCrypto.market_data?.current_price?.usd);
 
   return(
-    <div className="flex flex-wrap justify-between gap-4 items-center">
+    <div className="flex flex-wrap gap-4 items-center">
 
       {/* Current price section */}
       <div className="grid grid-cols-1 grid-rows-2">

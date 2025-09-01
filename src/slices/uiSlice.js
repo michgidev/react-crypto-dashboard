@@ -17,5 +17,3 @@ export const uiSlice = createSlice({
 export const { setLoading } = uiSlice.actions;
 
 export default uiSlice.reducer;
-
-console.log('ui: ', uiSlice);

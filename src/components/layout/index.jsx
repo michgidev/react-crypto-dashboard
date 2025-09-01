@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
 
         <DashboardHeader toggleSidebar={() => setSidebarOpen(!sidebarOpen)}/>
 
-        <main className="flex-1 overflow-y-auto p-4 mt-[72px] lg:mt-[62px]">
+        <main className="flex-1 overflow-y-auto p-4 mt-[72px] lg:p-6 lg:mt-[62px]">
           { children }
         </main>
 

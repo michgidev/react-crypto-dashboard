@@ -41,7 +41,7 @@ const CustomSelect = ({ optionsList, onChange, value, ...props }) => {
       options={formattedOptions}
       value={selectedOption}
       placeholder="Elige una crypto"
-      onChange={(selected) => onChange({ target: { value: selected.value } })} // emula evento
+      onChange={(selected) => onChange({ target: { value: selected.value } })}
       components={{ SingleValue: customSelectedValue, Option: customOption }}
       {...props}
       styles={{

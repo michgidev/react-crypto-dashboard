@@ -7,15 +7,15 @@ const options = {
   }
 };
 
-// Fetch top 10 crypto by market cap value
-const getTopCryptos = async () => {
+// Fetch first 200 cryptos by market cap value for table
+const getCryptosList = async (per_page = 200, page = 1) => {
   try {
     const response = await fetch(
-      `${COINGECKO_URL}coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1`, 
+      `${COINGECKO_URL}coins/markets?vs_currency=usd&include_tokens=top&order=market_cap_desc&per_page=${per_page}&page=${page}&locale=es&precision=2`,
       options
     );
 
-    if(!response.ok) throw new Error(response.status);
+    if (!response.ok) throw new Error(response.status);
 
     const data = await response.json();
     return data;
@@ -58,4 +58,4 @@ const getCryptoHistoricalChartData = async (id) => {
   }
 }
 
-export { getTopCryptos, getCryptoDataByID, getCryptoHistoricalChartData }
+export { getCryptosList, getCryptoDataByID, getCryptoHistoricalChartData }
