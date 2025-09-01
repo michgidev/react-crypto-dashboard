@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { formatCurrency } from "../../../utils/formatCurrency";
 import { formatPercentage } from "../../../utils/formatPercentage";
 import { ArrowDownLeft, ArrowUpRight } from "lucide-react";
+import { SearchBar } from "../SearchBar";
 
 // Data key to set table columns
 const tableHeadings = [
@@ -106,16 +107,24 @@ const TableCard = () => {
   }, [cryptos]);
 
   return(
-    <div className="w-full p-4 bg-white rounded-2xl shadow-md shadow-indigo-100">
+    <div className="w-full p-4 bg-white rounded-2xl
+       shadow-md shadow-indigo-100 dark:bg-slate-800 dark:shadow-slate-900">
 
-      <h2 className='text-2xl font-bold p-2 mb-2'>
-        Precios por Market Cap
-      </h2>
+      <div className="flex flex-col items-center justify-between p-2 mb-2 lg:flex-row">
+        <h2 className='text-2xl font-bold dark:text-gray-100 mb-4 lg:mb-2'>
+          Precios por Market Cap
+        </h2>
+
+        <SearchBar/>
+      </div>
 
       <div className="w-full h-[500px] max-h-[600px] overflow-y-auto">
         <AgGridReact
           rowData={rowData}
           columnDefs={colDefs}
+          pagination={true}
+          paginationPageSize={20}
+          className="custom-ag-theme"
         />
       </div>
 

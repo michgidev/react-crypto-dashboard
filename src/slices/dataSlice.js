@@ -11,6 +11,7 @@ const initialState = {
   trendingCryptosData: {}
 };
 
+// Fetch first load data
 export const fetchTopCryptosWithDefault = createAsyncThunk(
   'data/fetchTopCryptosWithDefault',
   async (_, { dispatch }) => {
@@ -39,6 +40,7 @@ export const fetchTopCryptosWithDefault = createAsyncThunk(
   }
 );
 
+// Fetch datawhen selected crypto change
 export const fetchSelectedCrypto = createAsyncThunk(
   'data/fetchSelectedCrypto',
   async (cryptoId, { dispatch }) => {
@@ -81,6 +83,21 @@ export const dataSlice = createSlice({
     setTrendingCryptosData: (state, action) => {
       state.trendingCryptosData = action.payload;
     },
+
+    setSearchedCryptos: (state, action) => {
+      const searchTerm = action.payload.searchQuery.toLowerCase();
+
+      if (searchTerm.trim() === '') {
+        state.cryptos = state.allCryptos;
+        return;
+      }
+
+      const filteredCryptos = state.allCryptos.filter((crypto) => {
+        return crypto.name.toLowerCase().includes(searchTerm);
+      });
+
+      state.cryptos = filteredCryptos;
+    }
   }
 });
 
@@ -90,6 +107,7 @@ export const {
   setCurrentCrypto, 
   setCryptoHistoricalChartData,
   setTrendingCryptosData,
+  setSearchedCryptos,
 } = dataSlice.actions;
 
 export default dataSlice.reducer;

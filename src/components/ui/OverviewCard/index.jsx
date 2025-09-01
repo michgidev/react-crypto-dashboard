@@ -20,11 +20,11 @@ const OverviewCard = ({ currentCrypto }) => {
           />
 
           <div className="flex items-baseline">
-            <h1 className="text-xl font-bold">
+            <h1 className="text-xl font-bold dark:text-gray-200">
               {currentCrypto.name}
             </h1>
 
-            <p className="uppercase ms-2 text-sm font-medium text-zinc-700">
+            <p className="uppercase ms-2 text-sm font-medium text-zinc-700 dark:text-gray-400">
               {currentCrypto.symbol}
             </p>
 
@@ -34,7 +34,7 @@ const OverviewCard = ({ currentCrypto }) => {
           </div>
         </div>
 
-        <h2 className="text-4xl font-bold">
+        <h2 className="text-4xl font-bold dark:text-gray-100">
           {currentPrice}
         </h2>
       </div>
@@ -43,40 +43,45 @@ const OverviewCard = ({ currentCrypto }) => {
       <div className="flex items-center justify-evenly flex-2">
 
         {/* Last 24 h */}
-        <div className="p-1 lg:p-2 flex-1 flex-col items-center justify-center gap-2 border-e border-gray-300">
-          <p className="text-lg text-center text-slate-600">24 Horas</p>
+        <div className="p-1 lg:p-2 flex-1 flex-col items-center 
+          justify-center gap-2 border-e border-gray-300 dark:border-slate-700">
+
+          <p className="text-lg text-center text-slate-600 dark:text-gray-400">24 Horas</p>
 
           <div className="flex gap-1 items-end justify-center">
             <ArrowIcon value={currentCrypto.market_data?.price_change_percentage_24h} />
 
-            <h3 className="text-xl text-center font-black lg:text-2xl">
+            <h3 className="text-xl text-center font-black lg:text-2xl dark:text-gray-100">
               {formatPercentage(currentCrypto.market_data?.price_change_percentage_24h)}
             </h3>
           </div>
-
         </div>
 
         {/* Last 7d */}
-        <div className="p-1 lg:p-2 flex-1 flex-col items-center justify-center gap-2 border-e border-gray-300">
-          <p className="text-lg text-center text-slate-600">7 Días</p>
+        <div className="p-1 lg:p-2 flex-1 flex-col items-center 
+        justify-center gap-2 border-e border-gray-300 dark:border-slate-700">
+
+          <p className="text-lg text-center text-slate-600 dark:text-gray-400">7 Días</p>
 
           <div className="flex gap-1 items-end justify-center">
             <ArrowIcon value={currentCrypto.market_data?.price_change_percentage_7d} />
 
-            <h3 className="text-xl text-center font-black lg:text-2xl">
+            <h3 className="text-xl text-center font-black lg:text-2xl dark:text-gray-100">
               {formatPercentage(currentCrypto.market_data?.price_change_percentage_7d)}
             </h3>
           </div>
         </div>
 
         {/* Last 14d */}
-        <div className="p-1 lg:p-2 flex-1 flex-col items-center justify-center gap-2 border-e border-gray-300">
-          <p className="text-lg text-center text-slate-600">14 Días</p>
+        <div className="p-1 lg:p-2 flex-1 flex-col items-center
+         justify-center gap-2 border-e border-gray-300 dark:border-slate-700">
+
+          <p className="text-lg text-center text-slate-600 dark:text-gray-400">14 Días</p>
 
           <div className="flex gap-1 items-end justify-center">  
             <ArrowIcon value={currentCrypto.market_data?.price_change_percentage_14d} />
 
-            <h3 className="text-xl text-center font-black lg:text-2xl">
+            <h3 className="text-xl text-center font-black lg:text-2xl dark:text-gray-100">
               {formatPercentage(currentCrypto.market_data?.price_change_percentage_14d)}
             </h3>
           </div>
@@ -84,19 +89,18 @@ const OverviewCard = ({ currentCrypto }) => {
 
         {/* Last month */}
         <div className="p-1 lg:p-2 flex-1 flex-col items-center justify-center gap-2">
-          <p className="text-lg text-center text-slate-600">1 Mes</p>
+          <p className="text-lg text-center text-slate-600 dark:text-gray-400">1 Mes</p>
 
           <div className="flex gap-1 items-end justify-center">
             <ArrowIcon value={currentCrypto.market_data?.price_change_percentage_30d} />
 
-            <h3 className="text-xl text-center font-black lg:text-2xl">
+            <h3 className="text-xl text-center font-black lg:text-2xl dark:text-gray-100">
               {formatPercentage(currentCrypto.market_data?.price_change_percentage_30d)}
             </h3>
           </div>
         </div>
 
       </div>
-
     </div>
   )
 }

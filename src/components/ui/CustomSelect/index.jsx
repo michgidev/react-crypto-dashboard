@@ -27,7 +27,7 @@ const CustomSelect = ({ optionsList, onChange, value, ...props }) => {
       <div 
         ref={innerRef}
         {...innerProps}
-        className={`flex items-center gap-2 px-3 py-2 cursor-pointer ${isFocused ? 'bg-gray-100' : ''}`}
+        className={`flex items-center gap-2 px-3 py-2 cursor-pointer dark:bg-indigo-400 ${isFocused ? 'bg-gray-100' : ''}`}
       >
         <img src={data.image} alt={data.text} className="w-5 h-5 rounded-full" />
         <span>{data.text}</span>
@@ -49,9 +49,16 @@ const CustomSelect = ({ optionsList, onChange, value, ...props }) => {
           ...base,
           borderRadius: '0.5rem',
           border: 'none',
-          boxShadow: '0 4px 6px -1px var(--color-indigo-100), 0 2px 4px -2px var(--color-indigo-100)',
+          backgroundColor: 'var(--select-bg)',
+          color: 'var(--select-color)',
+          boxShadow: '0 4px 6px -1px var(--select-shadow), 0 2px 4px -2px var(--select-shadow)',
           cursor: 'pointer'
-          
+        }),
+        menu: (base) => ({
+          ...base,
+          backgroundColor: 'var(--select-bg)',
+          color: 'var(--select-color)',
+          top: '36px'
         }),
       }}
     />

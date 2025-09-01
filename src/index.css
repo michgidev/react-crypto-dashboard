@@ -2,6 +2,8 @@
 
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
 @theme {
   --default-font-family: "Lato", sans-serif;
 }
@@ -18,17 +20,58 @@
 }
 
 :root {
-  --main-background: #F4F7FF;
+  --select-bg: #FFFFFF;
+  --select-color: #808080;
+  --select-shadow: var(--color-indigo-100);
+  --chart-bg: #FFFFFF;
+  --chart-text-color: #000000;
+
+  /* Dinamic styles for table */
+  --table-bg: #f8fafc;
+  --table-text: #1e293b;
+  --table-border: #e2e8f0;
+}
+
+html[data-theme="dark"] {
+  --select-bg: var(--color-indigo-400);
+  --select-color: #FFFFFF !important;
+  --select-shadow: var(--color-indigo-900);
+  --chart-bg: var(--color-slate-800);
+  --chart-text-color: var(--color-gray-100);
+
+  /* Dinamic styles for table */
+  --table-bg: var(--color-slate-800);
+  --table-text: var(--color-gray-100);
+  --table-border: var(--color-slate-700);
 }
 
 body {
-  /* min-height: 100dvh; */
   height: 100dvh;
   overflow-y: hidden;
-  background-color: var(--main-background);
 }
 
 .css-hlgwow {
   display: flex !important;
   flex-wrap: nowrap !important;
+}
+
+.ag-paging-panel {
+  flex-wrap: wrap;
+}
+
+.custom-ag-theme .ag-root-wrapper {
+  background-color: var(--table-bg);
+  color: var(--table-text);
+}
+
+.custom-ag-theme .ag-header,
+.custom-ag-theme .ag-cell {
+  background-color: var(--table-bg);
+  color: var(--table-text);
+}
+
+.custom-ag-theme .ag-header-cell,
+.custom-ag-theme .ag-cell {
+  border-right: 1px solid var(--table-border);
+  border-bottom: 1px solid var(--table-border);
 }

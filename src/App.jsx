@@ -8,11 +8,13 @@ import { HistoricalChartCard } from "./components/ui/HistoricalChartCard";
 import { TableCard } from "./components/ui/TableCard";
 import { TrendingCryptoCard } from "./components/ui/TrendingCryptoCard";
 import { TrendingNftCard } from "./components/ui/TrendingNftCard";
+import { Loader } from "./components/ui/Loader";
 
 function App() {
   const dispatch = useDispatch();
 
-  // const loading = useSelector((state) => state.ui.loading);
+  const loading = useSelector((state) => state.ui.loading);
+
   const topCryptos = useSelector((state) => state.data.topCryptos, shallowEqual);
 
   const currentCrypto = useSelector((state) => state.data.currentCrypto);
@@ -35,48 +37,55 @@ function App() {
   }
 
   return (
-    <Layout>
-      <div className="main-wrapper">
+    <>
+      {
+        loading ?
+        <Loader/> :
 
-        {/* Overview card and select */}
-        <div className="flex flex-col justify-between gap-4 lg:flex-row"> 
-          <div className="order-2 lg:flex-2 lg:order-1">
-            <OverviewCard currentCrypto={currentCrypto}/>
+        <Layout>
+          <div className="main-wrapper">
+
+            {/* Overview card and select */}
+            <div className="flex flex-col justify-between gap-4 lg:flex-row"> 
+              <div className="order-2 lg:flex-2 lg:order-1">
+                <OverviewCard currentCrypto={currentCrypto}/>
+              </div>
+              
+              <CustomSelect
+                optionsList={topCryptos} 
+                value={selectedCrypto}  
+                onChange={handleCryptoChange}
+                className="order-1 min-w-full lg:order-2 lg:min-w-48"
+              />
+            </div>
+
+            {/* Historical chart card */}
+            <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+
+              <div className="md:col-span-2 xl:col-span-1">
+                <HistoricalChartCard 
+                  currentCrypto={currentCrypto} 
+                  historicalChartData={historicalChartData}
+                />
+              </div>
+              
+              <div>
+                <TrendingCryptoCard  />
+              </div>
+
+              <div>
+                <TrendingNftCard/>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <TableCard />
+            </div>
+            
           </div>
-          
-          <CustomSelect
-            optionsList={topCryptos} 
-            value={selectedCrypto}  
-            onChange={handleCryptoChange}
-            className="order-1 min-w-full lg:order-2 lg:min-w-48"
-          />
-        </div>
-
-        {/* Historical chart card */}
-        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-
-          <div className="md:col-span-2 xl:col-span-1">
-            <HistoricalChartCard 
-              currentCrypto={currentCrypto} 
-              historicalChartData={historicalChartData}
-            />
-          </div>
-          
-          <div>
-            <TrendingCryptoCard />
-          </div>
-
-          <div>
-            <TrendingNftCard/>
-          </div>
-        </div>
-
-        <div className="mt-6">
-          <TableCard />
-        </div>
-        
-      </div>
-    </Layout>
+        </Layout>
+      }
+    </>
   );
 };
 
