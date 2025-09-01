@@ -6,6 +6,8 @@ import { fetchSelectedCrypto, fetchTopCryptosWithDefault } from "./slices/dataSl
 import { OverviewCard } from "./components/ui/OverviewCard";
 import { HistoricalChartCard } from "./components/ui/HistoricalChartCard";
 import { TableCard } from "./components/ui/TableCard";
+import { TrendingCryptoCard } from "./components/ui/TrendingCryptoCard";
+import { TrendingNftCard } from "./components/ui/TrendingNftCard";
 
 function App() {
   const dispatch = useDispatch();
@@ -51,14 +53,25 @@ function App() {
         </div>
 
         {/* Historical chart card */}
-        <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-2">
-          <HistoricalChartCard 
-            currentCrypto={currentCrypto} 
-            historicalChartData={historicalChartData}
-          />
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+
+          <div className="md:col-span-2 xl:col-span-1">
+            <HistoricalChartCard 
+              currentCrypto={currentCrypto} 
+              historicalChartData={historicalChartData}
+            />
+          </div>
+          
+          <div>
+            <TrendingCryptoCard />
+          </div>
+
+          <div>
+            <TrendingNftCard/>
+          </div>
         </div>
 
-        <div className="mt-8">
+        <div className="mt-6">
           <TableCard />
         </div>
         

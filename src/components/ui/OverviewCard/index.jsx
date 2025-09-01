@@ -1,14 +1,8 @@
-import { ArrowDownLeft, ArrowUpRight } from "lucide-react";
 import { formatPercentage } from "../../../utils/formatPercentage";
 import { formatCurrency } from "../../../utils/formatCurrency";
+import { ArrowIcon } from "../ArrowIcon";
 
 const OverviewCard = ({ currentCrypto }) => {
-
-  const setIcon = (value) => (
-    (value > 0) ? 
-    <ArrowUpRight className="text-emerald-500"/> : 
-    <ArrowDownLeft className="text-red-500"/>
-  );
 
   // Formats value to currency
   const currentPrice = formatCurrency(currentCrypto.market_data?.current_price?.usd);
@@ -53,7 +47,7 @@ const OverviewCard = ({ currentCrypto }) => {
           <p className="text-lg text-center text-slate-600">24 Horas</p>
 
           <div className="flex gap-1 items-end justify-center">
-            {setIcon(currentCrypto.market_data?.price_change_percentage_24h)}
+            <ArrowIcon value={currentCrypto.market_data?.price_change_percentage_24h} />
 
             <h3 className="text-xl text-center font-black lg:text-2xl">
               {formatPercentage(currentCrypto.market_data?.price_change_percentage_24h)}
@@ -67,7 +61,7 @@ const OverviewCard = ({ currentCrypto }) => {
           <p className="text-lg text-center text-slate-600">7 Días</p>
 
           <div className="flex gap-1 items-end justify-center">
-            {setIcon(currentCrypto.market_data?.price_change_percentage_7d)}
+            <ArrowIcon value={currentCrypto.market_data?.price_change_percentage_7d} />
 
             <h3 className="text-xl text-center font-black lg:text-2xl">
               {formatPercentage(currentCrypto.market_data?.price_change_percentage_7d)}
@@ -80,7 +74,7 @@ const OverviewCard = ({ currentCrypto }) => {
           <p className="text-lg text-center text-slate-600">14 Días</p>
 
           <div className="flex gap-1 items-end justify-center">  
-            {setIcon(currentCrypto.market_data?.price_change_percentage_14d)}
+            <ArrowIcon value={currentCrypto.market_data?.price_change_percentage_14d} />
 
             <h3 className="text-xl text-center font-black lg:text-2xl">
               {formatPercentage(currentCrypto.market_data?.price_change_percentage_14d)}
@@ -93,7 +87,7 @@ const OverviewCard = ({ currentCrypto }) => {
           <p className="text-lg text-center text-slate-600">1 Mes</p>
 
           <div className="flex gap-1 items-end justify-center">
-            {setIcon(currentCrypto.market_data?.price_change_percentage_30d)}
+            <ArrowIcon value={currentCrypto.market_data?.price_change_percentage_30d} />
 
             <h3 className="text-xl text-center font-black lg:text-2xl">
               {formatPercentage(currentCrypto.market_data?.price_change_percentage_30d)}

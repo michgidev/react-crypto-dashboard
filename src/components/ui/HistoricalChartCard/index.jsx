@@ -39,7 +39,7 @@ const HistoricalChartCard = ({ historicalChartData, currentCrypto }) => {
   };
 
   return(
-    <div className="w-full p-4 bg-white rounded-2xl shadow-md shadow-indigo-100 h-[500]">
+    <div className="w-full h-full p-4 bg-white rounded-2xl shadow-md shadow-indigo-100 max-h-[500px]">
 
       <h2 className='text-2xl font-bold p-2 mb-2'>
         Precio de los últimos 7 días

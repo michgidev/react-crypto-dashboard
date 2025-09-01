@@ -112,7 +112,7 @@ const TableCard = () => {
         Precios por Market Cap
       </h2>
 
-      <div className="w-full h-80 max-h-[600px] overflow-y-auto">
+      <div className="w-full h-[500px] max-h-[600px] overflow-y-auto">
         <AgGridReact
           rowData={rowData}
           columnDefs={colDefs}

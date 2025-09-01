@@ -58,4 +58,26 @@ const getCryptoHistoricalChartData = async (id) => {
   }
 }
 
-export { getCryptosList, getCryptoDataByID, getCryptoHistoricalChartData }
+// Fetch trending cryptos data
+const getTrendingCryptos = async () => {
+  try {
+    const response = await fetch(
+      `${COINGECKO_URL}/search/trending`,
+      options
+    );
+
+    if (!response.ok) throw new Error(response.status);
+
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    return err;
+  }
+}
+
+export { 
+  getCryptosList, 
+  getCryptoDataByID, 
+  getCryptoHistoricalChartData,
+  getTrendingCryptos
+}

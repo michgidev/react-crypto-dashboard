@@ -1,13 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { setLoading } from "./uiSlice";
-import { getCryptoDataByID, getCryptoHistoricalChartData, getCryptosList } from "../services";
+import { getCryptoDataByID, getCryptoHistoricalChartData, getCryptosList, getTrendingCryptos } from "../services";
 
 const initialState = {
   topCryptos: [],
   cryptos: [],
   allCryptos: [],
   currentCrypto: {},
-  cryptoHistoricalChartData: {}
+  cryptoHistoricalChartData: {},
+  trendingCryptosData: {}
 };
 
 export const fetchTopCryptosWithDefault = createAsyncThunk(
@@ -22,6 +23,8 @@ export const fetchTopCryptosWithDefault = createAsyncThunk(
 
     const topCryptoHistoricalChartData = await getCryptoHistoricalChartData(cryptos[0].id);
 
+    const trendingCryptosData = await getTrendingCryptos();
+
     dispatch(setAllCryptos(cryptos));
     
     dispatch(setTopCryptos(cryptos.slice(0, 10)));
@@ -29,6 +32,8 @@ export const fetchTopCryptosWithDefault = createAsyncThunk(
     dispatch(setCurrentCrypto(topCrypto));
 
     dispatch(setCryptoHistoricalChartData(topCryptoHistoricalChartData));
+
+    dispatch(setTrendingCryptosData(trendingCryptosData));
 
     dispatch(setLoading(false));
   }
@@ -72,6 +77,10 @@ export const dataSlice = createSlice({
     setCryptoHistoricalChartData: (state, action) => {
       state.cryptoHistoricalChartData = action.payload;
     },
+
+    setTrendingCryptosData: (state, action) => {
+      state.trendingCryptosData = action.payload;
+    },
   }
 });
 
@@ -79,7 +88,8 @@ export const {
   setTopCryptos, 
   setAllCryptos, 
   setCurrentCrypto, 
-  setCryptoHistoricalChartData 
+  setCryptoHistoricalChartData,
+  setTrendingCryptosData,
 } = dataSlice.actions;
 
 export default dataSlice.reducer;
