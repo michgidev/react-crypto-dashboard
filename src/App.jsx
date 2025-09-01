@@ -5,6 +5,7 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { fetchSelectedCrypto, fetchTopCryptosWithDefault } from "./slices/dataSlice";
 import { OverviewCard } from "./components/ui/OverviewCard";
 import { HistoricalChartCard } from "./components/ui/HistoricalChartCard";
+import { TableCard } from "./components/ui/TableCard";
 
 function App() {
   const dispatch = useDispatch();
@@ -50,11 +51,15 @@ function App() {
         </div>
 
         {/* Historical chart card */}
-        <div className="mt-8">
+        <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-2">
           <HistoricalChartCard 
             currentCrypto={currentCrypto} 
             historicalChartData={historicalChartData}
           />
+        </div>
+
+        <div className="mt-8">
+          <TableCard />
         </div>
         
       </div>

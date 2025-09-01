@@ -5,6 +5,10 @@ import { App } from './App'
 import { configureStore } from '@reduxjs/toolkit'
 import { rootReducer } from './reducers/rootReducer'
 import { Provider } from 'react-redux'
+import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'; 
+
+// Register all Community features
+ModuleRegistry.registerModules([AllCommunityModule]);
 
 const store = configureStore({
   reducer: rootReducer
