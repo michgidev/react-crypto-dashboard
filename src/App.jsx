@@ -9,11 +9,17 @@ import { TableCard } from "./components/ui/TableCard";
 import { TrendingCryptoCard } from "./components/ui/TrendingCryptoCard";
 import { TrendingNftCard } from "./components/ui/TrendingNftCard";
 import { Loader } from "./components/ui/Loader";
+import { CustomModal } from "./components/ui/CustomModal";
+import { setIsModalOpen } from "./slices/uiSlice";
+import { CryptoDetailCard } from "./components/ui/CryptoDetailCard";
+import { NftDetailCard } from "./components/ui/NftDetailCard";
 
 function App() {
   const dispatch = useDispatch();
 
   const loading = useSelector((state) => state.ui.loading);
+
+  const isModalOpen = useSelector((state) => state.ui.isModalOpen);
 
   const topCryptos = useSelector((state) => state.data.topCryptos, shallowEqual);
 
@@ -23,12 +29,14 @@ function App() {
 
   const [selectedCrypto, setSelectedCrypto] = useState("");
 
+  const [cryptoDetails, setCryptoDetails] = useState({});
+
   useEffect(() => {
     dispatch(fetchTopCryptosWithDefault());
   }, [dispatch]);
 
   // Handles select event and update the state with the selected value.
-  const handleCryptoChange = async (event) => {
+  const handleCryptoChange = (event) => {
     setSelectedCrypto(event.target.value);
 
     if (event.target.value === currentCrypto.id) return;
@@ -36,12 +44,20 @@ function App() {
     dispatch(fetchSelectedCrypto(event.target.value))
   }
 
+  // Handles click from trending cards
+  const handleCryptoClick = (item) => {
+    setCryptoDetails(item);
+    dispatch(setIsModalOpen(true));
+  }
+
   return (
     <>
       {
         loading ?
-        <Loader/> :
-
+        <Loader/> 
+        
+        :
+        
         <Layout>
           <div className="main-wrapper">
 
@@ -70,11 +86,11 @@ function App() {
               </div>
               
               <div>
-                <TrendingCryptoCard  />
+                <TrendingCryptoCard showItemDetail={handleCryptoClick} />
               </div>
 
               <div>
-                <TrendingNftCard/>
+                <TrendingNftCard showItemDetail={handleCryptoClick}/>
               </div>
             </div>
 
@@ -83,6 +99,19 @@ function App() {
             </div>
             
           </div>
+
+          {/* Modal */}
+          {
+            (isModalOpen && cryptoDetails) && (
+              <CustomModal>
+                { cryptoDetails.type === "coin" ? 
+                  <CryptoDetailCard data={cryptoDetails} />
+                  :
+                  <NftDetailCard data={cryptoDetails} />
+                }
+              </CustomModal>
+            )
+          }
         </Layout>
       }
     </>

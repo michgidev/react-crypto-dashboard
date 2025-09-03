@@ -4,9 +4,15 @@ import { formatPercentage } from "../../../utils/formatPercentage";
 import { ArrowIcon } from "../ArrowIcon";
 
 // Return the format for every element in the list
-const renderCryptoTendData = (item) => {
+const renderCryptoTrendData = (item, handleItemClick) => {
   return( 
-    <div className="px-2 py-3 flex items-center justify-between border-t border-gray-300 dark:border-slate-700" key={item.name}>
+    <div 
+      className="px-2 py-3 flex items-center justify-between border-b 
+      cursor-pointer border-gray-300 dark:border-slate-700" 
+      key={item.name}
+      onClick={() => handleItemClick(item)}
+    >
+
       <div className="flex items-center gap-2">
         <img className="w-6 h-6" src={item.thumb} alt={item.name} />
         <p className="text-slate-800 dark:text-gray-200">
@@ -33,20 +39,26 @@ const renderCryptoTendData = (item) => {
   )
 };
 
-const TrendingNftCard = () => {
+const TrendingNftCard = ({showItemDetail}) => {
 
   const trendingCryptoData = useSelector((state) => state.data.trendingCryptosData);
+
+  const handleItemClick = (item) => {
+    showItemDetail({...item, type: 'nft'})
+  }
 
   return(
     <div className="w-full h-[auto] px-4 pb-4 bg-white rounded-2xl shadow-md shadow-indigo-100
      overflow-y-auto relative no-scrollbar md:h-[500px] dark:bg-slate-800 dark:shadow-slate-900">
 
-      <h2 className='text-2xl font-bold p-2 pt-6 mb-2 sticky
+      <h2 className='text-2xl font-bold p-2 pt-6 sticky
         top-0 left-0 bg-white dark:bg-slate-800 dark:text-gray-100'>
         Trending Nfts
       </h2>
 
-      <div className="p-2 flex items-center justify-between">
+      <div className="p-2 flex items-center justify-between sticky border-b 
+        top-[64px] bg-white dark:bg-slate-800 border-gray-300 dark:border-slate-700">
+
         <p className="font-semibold text-slate-800 dark:text-gray-300">Nombre</p>
 
         <div className="grid grid-cols-[auto_60px] items-center gap-3 xxl:grid-cols-[auto_80px_auto]">
@@ -57,7 +69,9 @@ const TrendingNftCard = () => {
       </div>
       
       {/* Iterate over coins list to render elements */}
-      {trendingCryptoData && trendingCryptoData?.nfts?.map((item) => renderCryptoTendData(item))}
+      {trendingCryptoData && trendingCryptoData?.nfts?.map((item) => 
+        renderCryptoTrendData(item, handleItemClick)
+      )}
 
     </div>
   );
